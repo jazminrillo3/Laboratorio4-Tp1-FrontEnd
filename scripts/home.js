@@ -23,36 +23,22 @@ function cargarHome() {
 		.then((response) => response.json())
 		.then((data) => {
 			const noticiasArray = data.content;
-			const sliceContainer =
-				document.getElementsByClassName("camera_container")[0];
+			const camera_images = document.getElementById("camera").children;
 
-			const slice = document.createElement("div");
-			/*slice.id = "camera";
-			slice.className = "camera_wrap";
-			noticiasArray.forEach((noticia, index) => {
-				const nuevaNoticia = document.createElement("div");
-				nuevaNoticia.setAttribute("data-src", noticia.imagen);
-
-				nuevaNoticia.innerHTML = `
-        			<div class="camera_caption fadeIn">
-            			<div class="jumbotron jumbotron${index + 1}">
-                			<em class="tituloNoticia">${noticia.titulo}</em>
-                				<div class="wrap">
-                    				<p class="resumenNoticia">${noticia.resumen}</p>
-                    				<a href="detalle.html?id=${
-															noticia.id
-														}" class="btn-link fa-angle-right"></a>
-                				</div>
-            			</div>
-        			</div>
-   				`;
-
-				slice.appendChild(nuevaNoticia);
-			});
-
-			sliceContainer.appendChild(slice);
-			$("#camera").camera({});*/
+			for (let i = 0; i < camera_images.length; i++) {
+				const camera_image = camera_images[i];
+				const noticia = noticiasArray[i];
+				camera_image.setAttribute("data-src", noticia.imagen);
+				const tituloNoticia = camera_image.querySelector(".tituloNoticia");
+				tituloNoticia.textContent = noticia.titulo;
+				tituloNoticia.href = `detalle.html?id=${noticia.id}`;
+				const resumenNoticia = camera_image.querySelector(".resumenNoticia");
+				resumenNoticia.textContent = noticia.resumen;
+				const link = camera_image.querySelector(".btn-link");
+				link.href = `detalle.html?id=${noticia.id}`;
+			}
 		})
+
 		.catch((error) => {
 			console.error("Error al cargar las noticias:", error);
 		});
