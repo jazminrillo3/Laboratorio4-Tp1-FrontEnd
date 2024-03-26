@@ -5,6 +5,9 @@ function cargarHome() {
   fetch(`http://localhost:8080/empresas/${id}`)
     .then((response) => response.json())
     .then((data) => {
+      const inicioLink = document.getElementById("inicioLink");
+      inicioLink.href = `home.html?id=${data.id}`;
+
       for (const key in data) {
         const elements = document.getElementsByClassName(key);
         for (const element of elements) {
