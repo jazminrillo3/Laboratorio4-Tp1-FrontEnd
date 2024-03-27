@@ -32,7 +32,7 @@
     <![endif]-->
     <script src='js/device.min.js'></script>
   </head>
-  <body>
+  <body onload="cargarBuscador()">
   <div class="page">
   <!--========================================================
                             HEADER
@@ -67,7 +67,7 @@
 				  </ul>                           
 				</div>
 			</nav>
-			<form class="search-form" action="buscador.html" method="GET" accept-charset="utf-8">
+			<form class="search-form" action="buscador.html" method="GET" accept-charset="utf-8" onsubmit="cargarBuscador()">
 			  <label class="search-form_label">
 				<input class="search-form_input" type="text" name="buscar" autocomplete="off" placeholder="Ingrese Texto"/>
 				<span class="search-form_liveout"></span>
@@ -83,7 +83,7 @@
 
   <!--========================================================
                             CONTENT
-  =========================================================-->
+  ========================================================-->
 
     <main>        
 
@@ -91,113 +91,27 @@
 		
         <div class="container">
 			
-          <h2>
-            Texto Buscado
-          </h2>
+          <h2 id="textoBuscado"></h2>
           <div class="row offs2">
             
             <table width="90%" align="center">
-				<tbody>
-					<tr>
-						<td>
-							<a href="detalle.html">
-								<img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-							</a>
-						</td>
-						<td width="25"></td>
-						<td style="text-align:justify;" valign="top">
-							<a style="text-align:justify; font-size:20px" href="detalle.html" class="banner">
-								Titulo									</a>
-							<div class="verOcultar">
-								Resumen de la Noticia<a href="detalle.html" style="color:blue"> Leer Mas - 2020-02-14</a>											
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<table width="90%" align="center">
-				<tbody>
-					<tr>
-						<td>
-							<a href="detalle.html">
-								<img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-							</a>
-						</td>
-						<td width="25"></td>
-						<td style="text-align:justify;" valign="top">
-							<a style="text-align:justify; font-size:20px" href="detalle.html" class="banner">
-								Titulo									</a>
-							<div class="verOcultar">
-								Resumen de la Noticia<a href="detalle.html" style="color:blue"> Leer Mas - 2020-02-14</a>											
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<table width="90%" align="center">
-				<tbody>
-					<tr>
-						<td>
-							<a href="detalle.html">
-								<img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-							</a>
-						</td>
-						<td width="25"></td>
-						<td style="text-align:justify;" valign="top">
-							<a style="text-align:justify; font-size:20px" href="detalle.html" class="banner">
-								Titulo									</a>
-							<div class="verOcultar">
-								Resumen de la Noticia<a href="detalle.html" style="color:blue"> Leer Mas - 2020-02-14</a>											
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<table width="90%" align="center">
-				<tbody>
-					<tr>
-						<td>
-							<a href="detalle.html">
-								<img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-							</a>
-						</td>
-						<td width="25"></td>
-						<td style="text-align:justify;" valign="top">
-							<a style="text-align:justify; font-size:20px" href="detalle.html" class="banner">
-								Titulo									</a>
-							<div class="verOcultar">
-								Resumen de la Noticia<a href="detalle.html" style="color:blue"> Leer Mas - 2020-02-14</a>											
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<table width="90%" align="center">
-				<tbody>
-					<tr>
-						<td>
-							<a href="detalle.html">
-								<img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-							</a>
-						</td>
-						<td width="25"></td>
-						<td style="text-align:justify;" valign="top">
-							<a style="text-align:justify; font-size:20px" href="detalle.html" class="banner">
-								Titulo									</a>
-							<div class="verOcultar">
-								Resumen de la Noticia<a href="detalle.html" style="color:blue"> Leer Mas - 2020-02-14</a>											
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			
-			
+							<tbody>
+								<tr>
+									<td>
+										<a href="detalle.html">
+											<img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.			jpg?1583775512626" alt="">
+										</a>
+									</td>
+									<td width="25"></td>
+									<td style="text-align:justify;" valign="top">
+										<a id="titulo" style="text-align:justify; font-size:20px" href="detalle.html" class="banner"></a>
+										<div class="verOcultar">
+											<span id="resumen"></span><a href="detalle.html" style="color:blue"> Leer Mas - <span 			id="fechaPublicacion"></span></a>											
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
           </div>
         </div>
       </section>   
@@ -209,15 +123,16 @@
                             FOOTER
   =========================================================-->
   <footer>
-   <section class="well">
-      <div class="container"> 
-            <p class="rights">
-              Denominación Empresa  &#169; <span id="copyright-year"></span>
-              <a href="index-5.html">Privacy Policy</a>
-              <!-- {%FOOTER_LINK} -->
-            </p>        
-      </div> 
-    </section>    
+		<section class="well1">
+			<div class="container">
+				<p class="rights">
+					<span class="denominacion"></span> &#169;
+					<span id="copyright-year"></span>
+					<a href="index-5.html">Privacy Policy</a>
+					<!-- {%FOOTER_LINK} -->
+				</p>
+			</div>
+		</section>
   </footer>
   </div>
 
@@ -229,6 +144,6 @@
   <!-- </script> -->
 
 <!-- coded by vitlex -->
-
+	<script src="scripts/buscador.js"></script>
   </body>
 </html>

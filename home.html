@@ -80,9 +80,10 @@
 						</nav>
 						<form
 							class="search-form"
-							action="buscador.html"
+							/*action="buscador.html"*/
 							method="GET"
 							accept-charset="utf-8"
+							onsubmit="cargarBuscador()"
 						>
 							<label class="search-form_label">
 								<input
@@ -194,7 +195,7 @@
 					</div>
 				</section>
 				<div class="map">
-					<iframe
+					<iframe id="ubicacion"
 						src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11270.125646913215!2d-68.83492456656404!3d-32.88154997304907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1615335513448!5m2!1ses-419!2sar"
 						width="1600"
 						height="400"
@@ -222,5 +223,6 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/tm-scripts.js"></script>
 		<script src="scripts/home.js"></script>
+		<script src="scripts/buscador.js"></script>
 	</body>
 </html>
