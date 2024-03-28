@@ -47,7 +47,7 @@
 				<div class="container top-sect">
 					<div class="navbar-header">
 						<h1 class="navbar-brand">
-							<a data-type="rd-navbar-brand" href="./"
+							<a data-type="rd-navbar-brand" href="#"
 								><small class="denominacion"></small
 							></a>
 						</h1>
@@ -70,7 +70,7 @@
 									data-type="navbar"
 								>
 									<li style="list-style: none" class="active">
-										<a href="home.html" id="inicioLink">INICIO</a>
+										<a id="inicioLink" href="#">INICIO</a>
 									</li>
 									<li style="list-style: none">
 										<a href="./">LISTA EMPRESAS</a>
@@ -80,11 +80,11 @@
 						</nav>
 						<form
 							class="search-form"
-							/*action="buscador.html"*/
 							method="GET"
 							accept-charset="utf-8"
-							onsubmit="cargarBuscador()"
+							action="buscador.html"
 						>
+							<input type="hidden" name="id" value="" id="form-id" />
 							<label class="search-form_label">
 								<input
 									class="search-form_input"
@@ -128,7 +128,9 @@
 							<div data-src="images/page-1_slide2.jpg">
 								<div class="camera_caption fadeIn">
 									<div class="jumbotron jumbotron2">
-										<em class="tituloNoticia"> </em>
+										<em>
+											<a href="detalle.html" class="tituloNoticia"></a>
+										</em>
 										<div class="wrap">
 											<p class="resumenNoticia"></p>
 											<a href="#" class="btn-link hov_prime fa-angle-right"></a>
@@ -139,7 +141,9 @@
 							<div data-src="images/page-1_slide3.jpg">
 								<div class="camera_caption fadeIn">
 									<div class="jumbotron jumbotron3">
-										<em class="tituloNoticia"></em>
+										<em>
+											<a href="detalle.html" class="tituloNoticia"></a>
+										</em>
 										<div class="wrap">
 											<p class="resumenNoticia"></p>
 											<a href="#" class="btn-link fa-angle-right"></a>
@@ -150,7 +154,9 @@
 							<div data-src="images/page-1_slide3.jpg">
 								<div class="camera_caption fadeIn">
 									<div class="jumbotron jumbotron4">
-										<em class="tituloNoticia"></em>
+										<em>
+											<a href="detalle.html" class="tituloNoticia"></a>
+										</em>
 										<div class="wrap">
 											<p class="resumenNoticia"></p>
 											<a href="#" class="btn-link fa-angle-right"></a>
@@ -161,7 +167,9 @@
 							<div data-src="images/page-1_slide3.jpg">
 								<div class="camera_caption fadeIn">
 									<div class="jumbotron jumbotron4">
-										<em class="tituloNoticia"></em>
+										<em>
+											<a href="detalle.html" class="tituloNoticia"></a>
+										</em>
 										<div class="wrap">
 											<p class="resumenNoticia"></p>
 											<a href="#" class="btn-link fa-angle-right"></a>
@@ -195,7 +203,8 @@
 					</div>
 				</section>
 				<div class="map">
-					<iframe id="ubicacion"
+					<iframe
+						id="ubicacion"
 						src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11270.125646913215!2d-68.83492456656404!3d-32.88154997304907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1615335513448!5m2!1ses-419!2sar"
 						width="1600"
 						height="400"
@@ -222,7 +231,7 @@
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/tm-scripts.js"></script>
+		<script src="scripts/empresas.js"></script>
 		<script src="scripts/home.js"></script>
-		<script src="scripts/buscador.js"></script>
 	</body>
 </html>
