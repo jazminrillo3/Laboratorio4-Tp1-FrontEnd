@@ -1,3 +1,8 @@
+/*
+contador de horas perdidas en el buscador:
+Julian: 3:30
+*/
+
 function cargarBuscador() {
   console.log("Entré");
   const form = document
@@ -18,7 +23,7 @@ function cargarBuscador() {
     .then((data) => {
       const noticiasFiltradasArray = data.content;
 
-      for (i = 0; i < noticiasFiltradasArray.lenght; i++) {
+      for (i = 0; i < noticiasFiltradasArray.length; i++) {
         const tr = document.createElement("tr");
         const tdImagen = document.createElement("td");
         const imagen = document.createElement("img");
