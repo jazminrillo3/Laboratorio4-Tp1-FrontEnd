@@ -50,5 +50,6 @@ function cargarHome() {
     })
     .catch((error) => {
       console.error("Error al cargar las noticias:", error);
+      window.location.href = "404.html";
     });
 }

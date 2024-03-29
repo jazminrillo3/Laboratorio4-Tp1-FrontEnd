@@ -44,5 +44,6 @@ function cargarNoticia() {
     })
     .catch((error) => {
       console.error("Error al cargar la información:", error);
+      window.location.href = "404.html";
     });
 }
