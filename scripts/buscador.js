@@ -11,6 +11,9 @@ function cargarBuscador() {
 	const idForm = document.getElementById("form-id");
 	idForm.value = id;
 
+	const idTitle = document.getElementById("textoBuscado");
+	idTitle.textContent = palabraClave;
+
 	cargarDatosEmpresaBuscador(id);
 
 	fetch(
@@ -20,7 +23,13 @@ function cargarBuscador() {
 		.then((data) => {
 			const noticiasFiltradasArray = data.content;
 
-			if (!noticiasFiltradasArray) return;
+			if (!noticiasFiltradasArray) {
+				const notFound = `<p style="font-weight: bold; color: red">
+					Ups! No hemos encontrado ninguna noticia que coincida con el patrón ingresado.</p>`;
+
+				document.getElementById("contenedor-noticias").innerHTML += notFound;
+				return;
+			}
 
 			for (i = 0; i < noticiasFiltradasArray.length; i++) {
 				const noticia = noticiasFiltradasArray[i];
