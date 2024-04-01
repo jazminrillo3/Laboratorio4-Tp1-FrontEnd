@@ -3,7 +3,7 @@ function cargarHome() {
 	const id = urlParams.get("id");
 
 	const idForm = document.getElementById("form-id");
-  idForm.value = id;
+	idForm.value = id;
 
 	cargarDatosEmpresa(id);
 
@@ -13,7 +13,7 @@ function cargarHome() {
 			const noticiasArray = data.content;
 			const camera_captions = document.querySelectorAll(".camera_caption");
 
-      if(!noticiasArray) return;
+			if (!noticiasArray) return;
 
 			for (let i = 0; i < camera_captions.length; i++) {
 				const noticia = noticiasArray[i];
@@ -37,6 +37,6 @@ function cargarHome() {
 		})
 		.catch((error) => {
 			console.error("Error al cargar las noticias:", error);
+			window.location.href = "404.html";
 		});
 }
-

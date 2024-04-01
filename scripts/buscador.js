@@ -39,26 +39,28 @@ function cargarBuscador() {
 				const fechaFormateada = date.toLocaleDateString("es-ES", options);
 
 				const imagenHtml = `
-        <td>
-          <a href="detalle.html?id=${noticia.id}">
-            <div style="width: 250px; height: 180px; overflow: hidden;">
-                <img src="${noticia.imagen}" alt="Imagen de la noticia" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-          </a>
-        </td>`;
+       			<td>
+          			<a href="detalle.html?id=${noticia.id}">
+            			<div style="width: 250px; height: 180px; overflow: hidden;">
+                			<img src="${noticia.imagen}" alt="Imagen de la noticia" 
+							style="width: 100%; height: 100%; object-fit: cover;">
+            			</div>
+          			</a>
+        		</td>`;
 				const espacioHtml = `<td width="25"></td>`;
 				const contenidoHtml = `
-        <td style="text-align: justify" valign="top">
-          <a href="detalle.html?id=${noticia.id}" class="banner">${noticia.titulo}</a>
-          <div class="verOcultar">
-            <span>${noticia.resumen}</span>
-            <p><a href="detalle.html?id=${noticia.id}" style="color: blue;">Leer Más
-            <span> - ${fechaFormateada}</span></a></p>
-          </div>
-        </td>
-        `;
+        		<td style="text-align: justify" valign="top">
+          			<a href="detalle.html?id=${noticia.id}" class="banner">${noticia.titulo}</a>
+          			<div class="verOcultar">
+            			<span>${noticia.resumen}</span>
+           				<p><a href="detalle.html?id=${noticia.id}" style="color: blue;">Leer Más
+            			<span> - ${fechaFormateada}</span></a></p>
+         			</div>
+        		</td>`;
 
-				const trHtml = `<tr style="display: flex; align-items: center; margin-bottom: 16px">${imagenHtml}${espacioHtml}${contenidoHtml}</tr>`;
+				const trHtml = `<tr style="display: flex; align-items: center; margin-bottom: 16px">
+				${imagenHtml}${espacioHtml}${contenidoHtml}
+				</tr>`;
 				document.getElementById("contenedor-noticias").innerHTML += trHtml;
 			}
 		})
