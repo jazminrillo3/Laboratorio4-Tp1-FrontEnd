@@ -4,64 +4,67 @@ Julian: 3:30
 */
 
 function cargarBuscador() {
-  console.log("Entré");
-  const form = document
-    .getElementsByClassName(".search-form")
-    .addEventListener("submit", (e) => {
-      e.preventDefault();
-      const palabraClave = document
-        .getElementsByClassName(".search-form_input")
-        .value.trim()
-        .toLowerCase();
-    });
+	const urlParams = new URLSearchParams(window.location.search);
+	const palabraClave = urlParams.get("buscar");
+	const id = urlParams.get("id");
 
-  console.log(palabraClave);
-  fetch(
-    `http://localhost:8080/noticias/empresa/${id}/buscar?textoBusqueda=${palabraClave}page=0&size=20`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const noticiasFiltradasArray = data.content;
+	const idForm = document.getElementById("form-id");
+	idForm.value = id;
 
-      for (i = 0; i < noticiasFiltradasArray.length; i++) {
-        const tr = document.createElement("tr");
-        const tdImagen = document.createElement("td");
-        const imagen = document.createElement("img");
-        const tdEspacio = document.createElement("td");
-        const tdContenido = document.createElement("td");
-        const titulo = document.createElement("a");
-        const divResumen = document.createElement("div");
-        const resumen = document.createElement("p");
-        const enlaceLeerMas = document.createElement("a");
-        const fechaPublicacion = document.createElement("span");
+	const idTitle = document.getElementById("textoBuscado");
+	idTitle.textContent = palabraClave;
 
-        imagen.setAttribute("width", "250px");
-        imagen.classList.add("imgNoticia");
-        imagen.src = noticia.imagen;
-        imagen.alt = "Imagen de la noticia";
-        titulo.setAttribute("href", "detalle.html");
-        titulo.classList.add("banner");
-        titulo.textContent = noticia.titulo;
-        resumen.textContent = noticia.resumen;
-        enlaceLeerMas.setAttribute("href", "detalle.html");
-        enlaceLeerMas.style.color = "blue";
-        enlaceLeerMas.textContent = "Leer Más - ";
-        fechaPublicacion.textContent = noticia.fechaPublicacion;
+	cargarDatosEmpresaBuscador(id);
 
-        tdImagen.appendChild(imagen);
-        tr.appendChild(tdImagen);
-        tr.appendChild(tdEspacio);
-        tdContenido.appendChild(titulo);
-        divResumen.appendChild(resumen);
-        divResumen.appendChild(enlaceLeerMas);
-        divResumen.appendChild(fechaPublicacion);
-        tdContenido.appendChild(divResumen);
-        tr.appendChild(tdContenido);
+	fetch(
+		`http://localhost:8080/noticias/empresa/${id}/buscar?textoBusqueda=${palabraClave}&page=0&size=20`
+	)
+		.then((response) => response.json())
+		.then((data) => {
+			const noticiasFiltradasArray = data.content;
 
-        contenedorNoticias.appendChild(tr);
-      }
-    })
-    .catch((error) => {
-      console.error("Error al cargar las noticias:", error);
-    });
+			if (!noticiasFiltradasArray) {
+				const notFound = `<p style="font-weight: bold; color: red">
+					Ups! No hemos encontrado ninguna noticia que coincida con el patrón ingresado.</p>`;
+
+				document.getElementById("contenedor-noticias").innerHTML += notFound;
+				return;
+			}
+
+			for (i = 0; i < noticiasFiltradasArray.length; i++) {
+				const noticia = noticiasFiltradasArray[i];
+
+				const date = new Date(noticia.fechaPublicacion);
+				const options = { year: "numeric", month: "long", day: "numeric" };
+				const fechaFormateada = date.toLocaleDateString("es-ES", options);
+
+				const imagenHtml = `
+       			<td>
+          			<a href="detalle.html?id=${noticia.id}">
+            			<div style="width: 250px; height: 180px; overflow: hidden;">
+                			<img src="${noticia.imagen}" alt="Imagen de la noticia" 
+							style="width: 100%; height: 100%; object-fit: cover;">
+            			</div>
+          			</a>
+        		</td>`;
+				const espacioHtml = `<td width="25"></td>`;
+				const contenidoHtml = `
+        		<td style="text-align: justify" valign="top">
+          			<a href="detalle.html?id=${noticia.id}" class="banner">${noticia.titulo}</a>
+          			<div class="verOcultar">
+            			<span>${noticia.resumen}</span>
+           				<p><a href="detalle.html?id=${noticia.id}" style="color: blue;">Leer Más
+            			<span> - ${fechaFormateada}</span></a></p>
+         			</div>
+        		</td>`;
+
+				const trHtml = `<tr style="display: flex; align-items: center; margin-bottom: 16px">
+				${imagenHtml}${espacioHtml}${contenidoHtml}
+				</tr>`;
+				document.getElementById("contenedor-noticias").innerHTML += trHtml;
+			}
+		})
+		.catch((error) => {
+			console.error("Error al cargar las noticias:", error);
+		});
 }

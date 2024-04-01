@@ -45,7 +45,7 @@
 				<div class="container top-sect">
 					<div class="navbar-header">
 						<h1 class="navbar-brand">
-							<a data-type="rd-navbar-brand" href="./"
+							<a data-type="rd-navbar-brand" class="rd-navbar-brand"
 								><small class="denominacion"></small
 							></a>
 						</h1>
@@ -68,7 +68,7 @@
 									data-type="navbar"
 								>
 									<li style="list-style: none" class="active">
-										<a href="home.html" id="inicioLink">INICIO</a>
+										<a id="inicioLink">INICIO</a>
 									</li>
 									<li style="list-style: none">
 										<a href="./">LISTA EMPRESAS</a>
@@ -81,8 +81,9 @@
 							action="buscador.html"
 							method="GET"
 							accept-charset="utf-8"
-							onsubmit="cargarBuscador()"
 						>
+							<input type="hidden" name="id" value="" id="form-id" />
+
 							<label class="search-form_label">
 								<input
 									class="search-form_input"
@@ -126,9 +127,8 @@
 										font-size: 16px;
 										line-height: 50px;
 									"
-                  class="titulo"
-								>
-								</div>
+									class="titulo"
+								></div>
 							</div>
 						</center>
 						<h2 class="titulo"></h2>
@@ -169,7 +169,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/tm-scripts.js"></script>
 		<script src="scripts/detalle.js"></script>
-		<script src="scripts/buscador.js"></script>
+		<script src="scripts/empresas.js"></script>
 		<!-- </script> -->
 
 		<!-- coded by vitlex -->
