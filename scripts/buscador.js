@@ -1,3 +1,8 @@
+/*
+contador de horas perdidas en el buscador:
+Julian: 3:30
+*/
+
 function cargarBuscador() {
 	const urlParams = new URLSearchParams(window.location.search);
 	const palabraClave = urlParams.get("buscar");
