@@ -27,9 +27,8 @@ function cargarNoticia() {
 			const idForm = document.getElementById("form-id");
 			idForm.value = data.empresa.id;
 
-			const imagen = document.getElementById("imagenPrincipal");
-			imagen.style.backgroundImage =
-				imagen.style.backgroundImage = `url('${data.imagen}')`;
+			const imagen = document.getElementById("imagen");
+			imagen.src = `data:image/jpeg;base64,${data.imagenCodigo}`;
 
 			cargarDatosEmpresa(data.empresa.id);
 		})
