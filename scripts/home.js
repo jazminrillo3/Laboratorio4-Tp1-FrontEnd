@@ -20,6 +20,9 @@ function cargarHome() {
 				const camera_caption = camera_captions[i];
 
 				if (noticia) {
+					const imagen = document.getElementsByClassName("imgLoaded")[i];
+					if (imagen !== undefined) imagen.src = `data:image/jpeg;base64,${noticia.imagenCodigo}`;
+					console.log(imagen);
 					camera_caption.querySelector(".tituloNoticia").textContent =
 						noticia.titulo;
 					camera_caption.querySelector(
@@ -40,5 +43,3 @@ function cargarHome() {
 			window.location.href = "404.html";
 		});
 }
-
-s
