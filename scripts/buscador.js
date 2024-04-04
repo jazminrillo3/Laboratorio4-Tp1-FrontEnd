@@ -42,7 +42,7 @@ function cargarBuscador() {
        			<td>
           			<a href="detalle.html?id=${noticia.id}">
             			<div style="width: 250px; height: 180px; overflow: hidden;">
-                			<img src="${noticia.imagen}" alt="Imagen de la noticia" 
+                			<img src="data:image/jpeg;base64,${noticia.imagenCodigo}" alt="Imagen de la noticia" 
 							style="width: 100%; height: 100%; object-fit: cover;">
             			</div>
           			</a>

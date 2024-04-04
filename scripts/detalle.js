@@ -2,9 +2,6 @@ function cargarNoticia() {
 	const urlParams = new URLSearchParams(window.location.search);
 	const id = urlParams.get("id");
 
-	const idForm = document.getElementById("form-id");
-	idForm.value = id;
-
 	fetch(`http://localhost:8080/noticias/${id}`)
 		.then((response) => response.json())
 		.then((data) => {
